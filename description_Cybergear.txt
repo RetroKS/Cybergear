@@ -1,0 +1,11 @@
+4. Show automobile docs update date, oil change date, expenses.
+2. Show parsed news(only relevant and useful) from news websites.
+3. Show tickets info that were acquired.
+7. Show other info that is useful in daily life and helps decently to save time. 
+
+5. Show home water filter change date, next change and price.
+
+
+1. Show weather forcast for any chosen city in terminal.
+6. Show birthday of Parents, family and closest friends.
+
