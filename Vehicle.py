@@ -1,7 +1,29 @@
 import sqlite3
-
 import datetime
-from datetime import date
+
+#List of data columns for comprehensive view
+data_columns = ["Date", "Cost", "Consumables"]
+
+#Database establishment
+connection = sqlite3.connect("vehicle.db")
+cursor = connection.cursor()
+
+#Fetching from database all maintenance points
+maintenance_data = cursor.execute("SELECT * FROM Mpoints").fetchall()
+
+print(maintenance_data)
+print(type(maintenance_data))
+
+# print("These is all Maintenance Points for Kia Sportage\n")
+
+# print(f"{data_columns[0]:<10}{data_columns[1]:^29}{data_columns[2]:^25}\n")
+
+
+# for point in maintenance_data:
+#     print(f"{point[0]:<10}{point[1]:^29}{point[2]:^25}\n")
+#     print(type(point[1]))
+#     # print(f"{point[0].strftime('%d %b %y'):<10}{point[1]:^29}{point[2]:^25}\n")
+
 
 
 class Vehicle():
@@ -11,55 +33,36 @@ class Vehicle():
     def __repr__(self):
         return self.name
 
-sportage = Vehicle("Kia Sportage")
+sportage = Vehicle("Kia Sportage") 
+bmw5 = Vehicle("BMW 5-series")       
 
 
-class Mpoints():
-    def __init__(self, date, cost, consumable):
-        self.date = date
-        self.cost = cost
-        self.consumable = consumable
+# dat = input("Please, enter date in format yyyy, mm, dd:\n")
 
-    def __repr__(self):
-        return f"Date: {self.date}/ Consumables: {self.consumable}/ Cost: {self.cost}KZT"     
+# sportage.date = datetime.datetime.strptime(dat, '%Y, %m, %d')
 
-
-r1 = Mpoints(date(2021,1,1).strftime('%d %b %y'), 20000, ["Oil", "Oil filter"])    
-
-
-# print(r1)
-
-
-# dat = input("Please, enter date in format yyyy-mm-dd:\n")
 # cost = input("Please, enter cost:\n")
+
+# sportage.cost = cost
+
 # consumable = input('Please, enter changed parts:\n')
 
+# sportage.consumable = consumable
 
-# mp1 = Mpoints(datetime.datetime.strptime(dat, '%Y-%m-%d'), cost, [consumable])
-# print(mp1)
 
-dict_main = {}
-list_v = []
-list_v.append(r1)
 
-print(list_v)
+# # Create table named new_table
+# # cursor.execute("""CREATE TABLE Mpoints (date TEXT, cost INTEGER, consumable TEXT) """)
 
-dict_main[sportage] = list_v
-print(dict_main)
 
-# Database establishment
-connection = sqlite3.connect("vehicle.db")
-cursor = connection.cursor()
 
-# Create table named new_table
-cursor.execute("""CREATE TABLE Mpoints (date TEXT, cost INTEGER, consumable TEXT) """)
+# #Insert row of values into new_table
+# cursor.execute(f""" INSERT INTO Mpoints VALUES("{sportage.date}", {sportage.cost}, "{sportage.consumable}")""")
 
-# Insert row of values into new_table
+# #Commit changes to database
+# connection.commit()
 
-cursor.execute(f""" INSERT INTO Mpoints VALUES("{r1.date}", {r1.cost}, "{r1.consumable}")""")
+# #Close connection to database
+# connection.close()
 
-# commit changes to database
-connection.commit()
-
-# close connection
-connection.close()
+# # r1 = Mpoints(date(2021,1,1).strftime('%d %b %y'), 20000, ["Oil", "Oil filter"])    
